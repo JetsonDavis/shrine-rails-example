@@ -1,0 +1,22 @@
+<li>
+  <div class="media">
+    <div class="media-left">
+      <%= puts "PHOTO IMAGE: " + photo.inspect %>
+
+      <%= image_tag ("bbdo.png"),
+        width: 150,
+        class: "img-thumbnail media-object" %>
+
+    </div>
+    <div class="media-body">
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :_destroy, "Remove Photo" %>
+        <%= f.check_box :_destroy %>
+      </div>
+    </div>
+  </div>
+</li>

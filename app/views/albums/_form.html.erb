@@ -1,0 +1,65 @@
+<%= form_for @album do |f| %>
+  <% if @album.errors.any? %>
+    <div class="validation-errors alert alert-danger">
+      <ul class="list-unstyled">
+        <% @album.errors.full_messages.each do |message| %>
+          <li>Album <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :cover_photo %>
+
+    <!-- will be replaced by Uppy -->
+    <%= f.file_field :cover_photo,
+      accept: ImageUploader::ALLOWED_TYPES.join(","),
+      data: {
+        upload_server: upload_server,
+        preview_element: "preview-cover-photo",
+        upload_result_element: "album-cover-photo-upload-result",
+      } %>
+
+    <!-- for storing cover photo uploaded file data -->
+    <%= f.hidden_field :cover_photo,
+      value: @album.cached_cover_photo_data,
+      id: "album-cover-photo-upload-result" %>
+  </div>
+  <div class="image-preview">
+    <!-- static link to the thumbnail generated on attachment -->
+    <%= image_tag @album.cover_photo_url(:thumbnail).to_s,
+      width: 300,
+      class: "img-thumbnail file-upload-preview",
+      id: "preview-cover-photo" %>
+  </div>
+
+  <% if @album.persisted? %>
+    <div class="form-group uppy-home">
+      <!-- will be replaced by Uppy -->
+      <%= f.label :videos, "Select photos" %>
+      <%= f.file_field :videos,
+        multiple: true,
+        accept: VideoUploader::ALLOWED_TYPES.join(","),
+        data: {
+          upload_server: upload_server,
+        } %>
+    </div>
+  <% end %>
+
+  <ul class="list-unstyled file-upload-list" id="album-photo-list">
+    <%= f.fields_for :videos do |pf| %>
+      <%= render partial: "photo", locals: { photo: pf.object, f: pf } %>
+    <% end %>
+  </ul>
+
+  <%= f.submit "Save", class: "btn btn-primary" %>
+  <%= link_to albums_path, class: "btn btn-default" do %>
+    &larr; Back to albums
+  <% end %>
+<% end %>
