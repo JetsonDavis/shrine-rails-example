@@ -1,7 +1,7 @@
 require "shrine"
 
 # use S3 for production and local file for other environments
-if Rails.env.production?
+if Rails.env.production? or ENV['local_or_s3'] == 's3'
   require "shrine/storage/s3"
 
   s3_options = {
@@ -33,7 +33,7 @@ Shrine.plugin :determine_mime_type
 Shrine.plugin :cached_attachment_data
 Shrine.plugin :restore_cached_data
 
-if Rails.env.production?
+if Rails.env.production? or ENV['local_or_s3'] == 's3'
   Shrine.plugin :presign_endpoint, presign_options: -> (request) {
 
     # Uppy will send the "filename" and "type" query parameters

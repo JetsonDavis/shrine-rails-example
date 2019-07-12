@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :albums
 
-  if Rails.env.production?
+  if Rails.env.production? or ENV['local_or_s3'] == 's3'
     mount Shrine.presign_endpoint(:cache) => "/s3/params"
   else
     # In development and test environment we're using filesystem storage

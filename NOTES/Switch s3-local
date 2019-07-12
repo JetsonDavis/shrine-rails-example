@@ -1,6 +1,8 @@
-config/initializer/shrine.rb - if Rails.env.production? => if !Rails.env.production? (x2)
-helper/application_helper.rb - if Rails.env.production? => if !Rails.env.production?
-routes.rb - if Rails.env.production? => if !Rails.env.production?
+# config/initializer/shrine.rb - if Rails.env.production? => if !Rails.env.production? (x2)
+# helper/application_helper.rb - if Rails.env.production? => if !Rails.env.production?
+# routes.rb - if Rails.env.production? => if !Rails.env.production?
+
+CHANGE ENV VARIABLE IN application.yml
 
 Swap Eniv files
 
