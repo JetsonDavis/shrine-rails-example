@@ -14,7 +14,7 @@ gem 'dotenv-rails'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 # Shrine
-gem 'shrine', '~> 2.17.0'
+gem 'shrine', '~> 3.3.0'
 gem 'aws-sdk-s3', '~> 1.2'
 gem 'image_processing', '~> 1.0'
 gem 'streamio-ffmpeg'
