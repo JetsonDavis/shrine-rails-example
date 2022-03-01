@@ -16,7 +16,7 @@ gem 'figaro', '~> 1.1', '>= 1.1.1'
 # Shrine
 gem 'shrine', '~> 2.17.0'
 gem 'aws-sdk-s3', '~> 1.2'
-gem 'image_processing', '~> 1.0'
+gem 'image_processing', '~> 1.12'
 gem 'streamio-ffmpeg'
 
 group :development, :test do
